@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow'
+}
+
+group 'com.fadecloud.fadedistributionapi'
+version '1.0.0-SNAPSHOT'
+
+repositories {
+}
+
+dependencies {
+}
+shadowJar {
+    archiveBaseName.set("${project.ext.name}-api-${project.version}")
+    archiveClassifier.set('')
+    archiveVersion.set('')
+}

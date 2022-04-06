@@ -1,0 +1,17 @@
+plugins {
+    id "java"
+}
+
+subprojects {
+
+    group "com.fadecloud"
+    version "1.0.0-SNAPSHOT"
+    project.ext.name = "FadeDistributionAPI"
+    project.ext.groupId = "com.fadecloud.fadedistributionapi"
+
+    repositories {
+        mavenCentral()
+        maven { url = "https://oss.sonatype.org/content/repositories/snapshots" }
+        maven { url = "https://oss.sonatype.org/content/repositories/central" }
+    }
+}

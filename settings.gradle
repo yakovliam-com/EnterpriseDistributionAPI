@@ -1,0 +1,12 @@
+pluginManagement {
+    plugins {
+        id "com.github.johnrengelman.shadow" version "7.1.2"
+        id "java"
+    }
+}
+
+rootProject.name = 'FadeDistributionAPI'
+include 'api'
+include 'proxy'
+include 'backend'
+
