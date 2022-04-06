@@ -2,7 +2,9 @@
 
 This project is FadeCloud's advanced multi-server distribution API that is implemented in specific projects
 
-# How To Commit
+# How To Commit/Contribute
+
+When fixing bugs/adding features, please make a new branch while following [Digitaljhelms's branch standards](https://gist.github.com/digitaljhelms/4287848).
 
 When making commits, please use the [Commitzen Conventional Commit Standards](https://github.com/commitizen/conventional-commit-types/blob/master/index.json).
 
