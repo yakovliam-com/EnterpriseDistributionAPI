@@ -12,6 +12,7 @@ repositories {
 dependencies {
     implementation project(path: ':api', configuration: 'shadow')
 }
+
 shadowJar {
     archiveBaseName.set("${project.ext.name}-proxy-${project.version}")
     archiveClassifier.set('')

@@ -8,7 +8,7 @@ import com.fadecloud.fadedistributionapi.api.redis.packet.RedisPacket;
  *
  * @param <T> the type of connection object
  */
-public abstract class RedisProvider<T extends RedisConnectionProvider<?>> {
+public abstract class RedisProvider<T extends RedisConnectionProvider<?>, P extends RedisPacket> {
 
     /**
      * Redis connection provider
@@ -38,5 +38,5 @@ public abstract class RedisProvider<T extends RedisConnectionProvider<?>> {
      *
      * @param packet packet
      */
-    public abstract void sendPacket(RedisPacket<? extends RedisProvider<?>> packet);
+    public abstract void sendPacket(P packet);
 }
