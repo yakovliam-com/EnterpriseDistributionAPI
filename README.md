@@ -20,7 +20,7 @@ FadeDistributionAPI
             |- Stuff
             |- RedisPacket
     |- proxy
-        |- Proxy Specific Stuf
+        |- Proxy Specific Stuff
     |- backend
         |- Backend Specific Stuff
 
