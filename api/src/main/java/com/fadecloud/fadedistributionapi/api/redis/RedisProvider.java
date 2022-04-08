@@ -33,7 +33,6 @@ public abstract class RedisProvider<T extends RedisConnectionProvider<?>> {
         return this.redisConnectionProvider;
     }
 
-
     /**
      * Sends a packet
      *
