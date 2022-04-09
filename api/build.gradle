@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
 }
+
 shadowJar {
     archiveBaseName.set("${project.ext.name}-api-${project.version}")
     archiveClassifier.set('')

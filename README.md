@@ -20,9 +20,9 @@ FadeDistributionAPI
             |- Stuff
             |- RedisPacket
     |- proxy
-        |- ProxyDistributedCommand
+        |- Proxy Specific Stuff
     |- backend
-        |- BackendDistributedCommand
+        |- Backend Specific Stuff
 
 FadeDistribution[Gamemode Name]
     |- api (compile FadeDistributionAPI:api)
@@ -31,5 +31,4 @@ FadeDistribution[Gamemode Name]
         |- sends/receives [Gamemode Name]RedisPacket
     |- paper-plugin  (compile :api & FadeDistributionAPI:backend)
         |- sends/receives [Gamemode Name]RedisPacket
-
 ```
