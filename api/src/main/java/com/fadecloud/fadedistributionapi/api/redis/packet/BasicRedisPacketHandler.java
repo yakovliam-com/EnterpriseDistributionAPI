@@ -41,13 +41,13 @@ public abstract class BasicRedisPacketHandler<T extends BasicRedisPacket> implem
                     .map(Map.Entry::getValue)
                     .findFirst()
                     .orElse(null);
+            // remove from cache (if exists) now
+            this.redisServicesProvider.handshakePacketSuccessCache().successHandlerCache()
+                    .asMap()
+                    .entrySet()
+                    .removeIf(entry -> entry.getKey().pipeId().equals(((BasicRedisResponsePacket) packet).pipeId()));
 
             if (successHandler != null) {
-                // remove from cache now
-                this.redisServicesProvider.handshakePacketSuccessCache().successHandlerCache()
-                        .asMap()
-                        .entrySet()
-                        .removeIf(entry -> entry.getKey().pipeId().equals(((BasicRedisResponsePacket) packet).pipeId()));
                 // execute the handler
                 successHandler.onSuccess((BasicRedisResponsePacket) packet);
             }
