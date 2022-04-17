@@ -10,6 +10,17 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.redisson:redisson:3.17.0'
+    implementation 'org.jetbrains:annotations:23.0.0'
+
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-paranamer
+    implementation 'com.fasterxml.jackson.module:jackson-module-paranamer:2.13.2'
+
+    // caffeine
+    implementation 'com.github.ben-manes.caffeine:caffeine:3.0.6'
+
+    // configurate
+    implementation 'org.spongepowered:configurate-hocon:4.1.2'
 }
 
 shadowJar {
