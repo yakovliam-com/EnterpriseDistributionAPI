@@ -3,6 +3,8 @@ package com.fadecloud.fadedistributionapi.api.redis.packet;
 import com.fadecloud.fadedistributionapi.api.redis.BasicRedisServicesProvider;
 import org.redisson.api.listener.MessageListener;
 
+import java.util.Map;
+
 public abstract class BasicRedisPacketHandler<T extends BasicRedisPacket> implements MessageListener<T> {
 
     /**
@@ -28,6 +30,27 @@ public abstract class BasicRedisPacketHandler<T extends BasicRedisPacket> implem
                     .asMap()
                     .entrySet()
                     .removeIf(entry -> entry.getKey().pipeId().equals(((BasicRedisResponsePacket) packet).pipeId()));
+            // try to execute a success response callback
+            // logically this works, but it breaks some conventions
+            // that's okay because in this context it technically doesn't break anything
+            BasicRedisHandshakeSuccessHandler successHandler = this.redisServicesProvider.handshakePacketSuccessCache().successHandlerCache()
+                    .asMap()
+                    .entrySet()
+                    .stream()
+                    .filter(entry -> entry.getKey().pipeId().equals(((BasicRedisResponsePacket) packet).pipeId()))
+                    .map(Map.Entry::getValue)
+                    .findFirst()
+                    .orElse(null);
+
+            if (successHandler != null) {
+                // remove from cache now
+                this.redisServicesProvider.handshakePacketSuccessCache().successHandlerCache()
+                        .asMap()
+                        .entrySet()
+                        .removeIf(entry -> entry.getKey().pipeId().equals(((BasicRedisResponsePacket) packet).pipeId()));
+                // execute the handler
+                successHandler.onSuccess((BasicRedisResponsePacket) packet);
+            }
         }
 
         // call the normal handle method

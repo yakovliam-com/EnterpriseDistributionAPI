@@ -1,6 +1,6 @@
-package com.fadecloud.fadedistributionapi.api.redis.packet.cache;
+package com.fadecloud.fadedistributionapi.api.redis.packet.cache.failure;
 
-import com.fadecloud.fadedistributionapi.api.redis.packet.BasicRedisPacketFailureHandler;
+import com.fadecloud.fadedistributionapi.api.redis.packet.BasicRedisHandshakeFailureHandler;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.github.benmanes.caffeine.cache.Expiry;
@@ -9,7 +9,7 @@ import org.checkerframework.checker.index.qual.NonNegative;
 
 public class HandshakePacketFailureCache {
 
-    private final Cache<HandshakePacketFailureCacheKey, BasicRedisPacketFailureHandler> failureHandlerCache;
+    private final Cache<HandshakePacketFailureCacheKey, BasicRedisHandshakeFailureHandler> failureHandlerCache;
 
     /**
      * Handshake packet failure cache
@@ -18,19 +18,19 @@ public class HandshakePacketFailureCache {
         this.failureHandlerCache = Caffeine.newBuilder()
                 .scheduler(Scheduler.systemScheduler())
                 .weakKeys()
-                .expireAfter(new Expiry<HandshakePacketFailureCacheKey, BasicRedisPacketFailureHandler>() {
+                .expireAfter(new Expiry<HandshakePacketFailureCacheKey, BasicRedisHandshakeFailureHandler>() {
                     @Override
-                    public long expireAfterCreate(HandshakePacketFailureCacheKey key, BasicRedisPacketFailureHandler value, long currentTime) {
+                    public long expireAfterCreate(HandshakePacketFailureCacheKey key, BasicRedisHandshakeFailureHandler value, long currentTime) {
                         return key.timeout().toNanos();
                     }
 
                     @Override
-                    public long expireAfterUpdate(HandshakePacketFailureCacheKey key, BasicRedisPacketFailureHandler value, long currentTime, @NonNegative long currentDuration) {
+                    public long expireAfterUpdate(HandshakePacketFailureCacheKey key, BasicRedisHandshakeFailureHandler value, long currentTime, @NonNegative long currentDuration) {
                         return Long.MAX_VALUE;
                     }
 
                     @Override
-                    public long expireAfterRead(HandshakePacketFailureCacheKey key, BasicRedisPacketFailureHandler value, long currentTime, @NonNegative long currentDuration) {
+                    public long expireAfterRead(HandshakePacketFailureCacheKey key, BasicRedisHandshakeFailureHandler value, long currentTime, @NonNegative long currentDuration) {
                         return Long.MAX_VALUE;
                     }
                 })
@@ -51,7 +51,7 @@ public class HandshakePacketFailureCache {
      *
      * @return cache
      */
-    public Cache<HandshakePacketFailureCacheKey, BasicRedisPacketFailureHandler> failureHandlerCache() {
+    public Cache<HandshakePacketFailureCacheKey, BasicRedisHandshakeFailureHandler> failureHandlerCache() {
         return failureHandlerCache;
     }
 }
