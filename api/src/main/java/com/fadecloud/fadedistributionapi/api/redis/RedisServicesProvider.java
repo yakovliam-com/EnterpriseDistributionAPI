@@ -1,7 +1,6 @@
 package com.fadecloud.fadedistributionapi.api.redis;
 
 import com.fadecloud.fadedistributionapi.api.redis.packet.RedisPacket;
-import com.fadecloud.fadedistributionapi.api.redis.publisher.RedisPublisher;
 
 /**
  * This class is a provider interface that provides a redis connection provider and exposes a publisher / subscriber
@@ -9,12 +8,7 @@ import com.fadecloud.fadedistributionapi.api.redis.publisher.RedisPublisher;
  * @param <T> the type of connection object
  * @param <P> the type of redis packet
  */
-public abstract class RedisServicesProvider<T extends RedisConnectionProvider<?>, P extends RedisPacket, P2 extends RedisPublisher<T, P>> {
-
-    /**
-     * Redis publisher
-     */
-    private final P2 redisPublisher;
+public abstract class RedisServicesProvider<T extends RedisConnectionProvider<?>, P extends RedisPacket> {
 
     /**
      * Redis connection provider
@@ -24,11 +18,9 @@ public abstract class RedisServicesProvider<T extends RedisConnectionProvider<?>
     /**
      * Redis connection provider
      *
-     * @param redisPublisher          redis publisher
      * @param redisConnectionProvider redis connection provider
      */
-    protected RedisServicesProvider(P2 redisPublisher, T redisConnectionProvider) {
-        this.redisPublisher = redisPublisher;
+    protected RedisServicesProvider(T redisConnectionProvider) {
         this.redisConnectionProvider = redisConnectionProvider;
     }
 
@@ -39,14 +31,5 @@ public abstract class RedisServicesProvider<T extends RedisConnectionProvider<?>
      */
     protected T provideConnectionProvider() {
         return this.redisConnectionProvider;
-    }
-
-    /**
-     * Returns the publisher
-     *
-     * @return publisher
-     */
-    public P2 publisher() {
-        return this.redisPublisher;
     }
 }
