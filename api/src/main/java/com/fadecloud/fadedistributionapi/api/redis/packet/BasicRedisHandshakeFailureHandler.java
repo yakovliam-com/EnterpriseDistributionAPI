@@ -1,7 +1,7 @@
 package com.fadecloud.fadedistributionapi.api.redis.packet;
 
 @FunctionalInterface
-public interface BasicRedisPacketFailureHandler {
+public interface BasicRedisHandshakeFailureHandler {
 
     /**
      * Handles a packet being received

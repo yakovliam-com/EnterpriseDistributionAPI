@@ -1,4 +1,4 @@
-package com.fadecloud.fadedistributionapi.api.redis.packet.cache;
+package com.fadecloud.fadedistributionapi.api.redis.packet.cache.failure;
 
 import com.fadecloud.fadedistributionapi.api.redis.packet.BasicRedisHandshakePacket;
 

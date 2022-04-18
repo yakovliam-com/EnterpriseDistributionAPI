@@ -1,10 +1,12 @@
 package com.fadecloud.fadedistributionapi.api.redis.publisher;
 
 import com.fadecloud.fadedistributionapi.api.redis.BasicRedisServicesProvider;
+import com.fadecloud.fadedistributionapi.api.redis.packet.BasicRedisHandshakeFailureHandler;
 import com.fadecloud.fadedistributionapi.api.redis.packet.BasicRedisHandshakePacket;
+import com.fadecloud.fadedistributionapi.api.redis.packet.BasicRedisHandshakeSuccessHandler;
 import com.fadecloud.fadedistributionapi.api.redis.packet.BasicRedisPacket;
-import com.fadecloud.fadedistributionapi.api.redis.packet.BasicRedisPacketFailureHandler;
-import com.fadecloud.fadedistributionapi.api.redis.packet.cache.HandshakePacketFailureCacheKey;
+import com.fadecloud.fadedistributionapi.api.redis.packet.cache.failure.HandshakePacketFailureCacheKey;
+import com.fadecloud.fadedistributionapi.api.redis.packet.cache.success.HandshakePacketSuccessCacheKey;
 import org.redisson.api.RTopic;
 
 import java.time.Duration;
@@ -42,12 +44,14 @@ public final class BasicRedisPublisher {
      * @param topic                topic
      * @param redisHandshakePacket redis handshake packet
      */
-    public void publish(RTopic topic, BasicRedisHandshakePacket redisHandshakePacket, Duration timeout, BasicRedisPacketFailureHandler failureHandler) {
+    public void publish(RTopic topic, BasicRedisHandshakePacket redisHandshakePacket, Duration timeout, BasicRedisHandshakeFailureHandler failureHandler, BasicRedisHandshakeSuccessHandler successHandler) {
         // publish the packet via the connection provider
         topic.publish(redisHandshakePacket);
 
         // add this pipe id to the handshake cache along with the failure handler
         this.redisServicesProvider.handshakePacketFailureCache().failureHandlerCache()
                 .put(new HandshakePacketFailureCacheKey(redisHandshakePacket.pipeId(), timeout, redisHandshakePacket), failureHandler);
+        this.redisServicesProvider.handshakePacketSuccessCache().successHandlerCache()
+                .put(new HandshakePacketSuccessCacheKey(redisHandshakePacket.pipeId(), redisHandshakePacket), successHandler);
     }
 }

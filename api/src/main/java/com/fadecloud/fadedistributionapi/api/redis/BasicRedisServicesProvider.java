@@ -3,7 +3,8 @@ package com.fadecloud.fadedistributionapi.api.redis;
 import com.fadecloud.fadedistributionapi.api.model.topic.TopicChannelKey;
 import com.fadecloud.fadedistributionapi.api.model.topic.TopicKey;
 import com.fadecloud.fadedistributionapi.api.redis.packet.BasicRedisPacket;
-import com.fadecloud.fadedistributionapi.api.redis.packet.cache.HandshakePacketFailureCache;
+import com.fadecloud.fadedistributionapi.api.redis.packet.cache.failure.HandshakePacketFailureCache;
+import com.fadecloud.fadedistributionapi.api.redis.packet.cache.success.HandshakePacketSuccessCache;
 import com.fadecloud.fadedistributionapi.api.redis.publisher.BasicRedisPublisher;
 import org.redisson.api.RTopic;
 
@@ -20,6 +21,11 @@ public abstract class BasicRedisServicesProvider<T extends BasicRedisConnectionP
     private final HandshakePacketFailureCache handshakePacketFailureCache;
 
     /**
+     * Handshake packet success
+     */
+    private final HandshakePacketSuccessCache handshakePacketSuccessCache;
+
+    /**
      * Redis provider
      *
      * @param redisConnectionProvider redis connection provider
@@ -28,6 +34,7 @@ public abstract class BasicRedisServicesProvider<T extends BasicRedisConnectionP
         super(redisConnectionProvider);
         // create handshake failure cache
         this.handshakePacketFailureCache = new HandshakePacketFailureCache();
+        this.handshakePacketSuccessCache = new HandshakePacketSuccessCache();
         this.redisPublisher = new BasicRedisPublisher(this);
     }
 
@@ -56,6 +63,15 @@ public abstract class BasicRedisServicesProvider<T extends BasicRedisConnectionP
      */
     public HandshakePacketFailureCache handshakePacketFailureCache() {
         return this.handshakePacketFailureCache;
+    }
+
+    /**
+     * Handshake packet success cache
+     *
+     * @return cache
+     */
+    public HandshakePacketSuccessCache handshakePacketSuccessCache() {
+        return handshakePacketSuccessCache;
     }
 
     /**
