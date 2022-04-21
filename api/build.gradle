@@ -27,4 +27,27 @@ shadowJar {
     archiveBaseName.set("${project.ext.name}-api-${project.version}")
     archiveClassifier.set('')
     archiveVersion.set('')
+
+    // relocations
+    relocate 'com.fasterxml.jackson', "${project.group}.api.libs.jackson"
+    relocate 'com.github.benmanes.caffeine', "${project.group}.api.libs.caffeine"
+    relocate 'com.google.errorprone', "${project.group}.api.libs.errorprone"
+    relocate 'com.thoughtworks.paranamer', "${project.group}.api.libs.paranamer"
+    relocate 'com.typesafe', "${project.group}.api.libs.typesafe"
+    relocate 'io.leangen', "${project.group}.api.libs.leangen"
+    relocate 'io.netty', "${project.group}.api.libs.netty"
+    relocate 'io.reactivex', "${project.group}.api.libs.reactivex"
+    relocate 'javax', "${project.group}.api.libs.javax"
+    relocate 'jodd', "${project.group}.api.libs.jodd"
+    relocate 'net.bytebuddy', "${project.group}.api.libs.bytebuddy"
+    relocate 'org.checkerframework', "${project.group}.api.libs.checkerframework"
+    relocate 'org.intellij', "${project.group}.api.libs.intellij"
+    relocate 'org.jboss', "${project.group}.api.libs.jboss"
+    relocate 'org.jetbrains', "${project.group}.api.libs.jetbrains"
+    relocate 'org.reactivestreams', "${project.group}.api.libs.reactivestreams"
+    relocate 'org.redisson', "${project.group}.api.libs.redisson"
+    relocate 'org.slf4j', "${project.group}.api.libs.slf4j"
+    relocate 'org.spongepowered', "${project.group}.api.libs.spongepowered"
+    relocate 'org.yaml.snakeyaml', "${project.group}.api.libs.snakeyaml"
+    relocate 'reactor', "${project.group}.api.libs.reactor"
 }
