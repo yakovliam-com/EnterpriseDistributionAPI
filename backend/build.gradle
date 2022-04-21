@@ -3,18 +3,14 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
-group 'com.fadecloud.fadedistributionapi'
-version '1.0.0-SNAPSHOT'
-
-repositories {
-}
+repositories {}
 
 dependencies {
     implementation project(path: ':api', configuration: 'shadow')
 }
 
 shadowJar {
-    archiveBaseName.set("${project.ext.name}-backend-${project.version}")
+    archiveBaseName.set("${project.ext.name}-backend-${project.ext.buildVersion}")
     archiveClassifier.set('')
     archiveVersion.set('')
 }

@@ -4,10 +4,11 @@ plugins {
 
 subprojects {
 
-    group "com.fadecloud"
-    version "1.0.0-SNAPSHOT"
-    project.ext.name = "FadeDistributionAPI"
-    project.ext.groupId = "com.fadecloud.fadedistributionapi"
+    group = 'com.yakovliam.enterprisedistributionapi'
+    version = '1.0.0-SNAPSHOT'
+
+    project.ext.name = 'EnterpriseDistributionAPI'
+    project.ext.buildVersion = project.version
 
     repositories {
         mavenCentral()

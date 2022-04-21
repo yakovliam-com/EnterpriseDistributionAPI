@@ -5,7 +5,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'FadeDistributionAPI'
+rootProject.name = 'EnterpriseDistributionAPI'
 include 'api'
 include 'proxy'
 include 'backend'
