@@ -1,6 +1,6 @@
-# FadeCloud Distribution API
+# Enterprise Distribution API
 
-This project is FadeCloud's advanced multi-server distribution API that is implemented in specific projects
+This project is Jacob's advanced multi-server distribution API that is implemented in specific projects
 
 # How To Commit/Contribute
 
@@ -15,7 +15,7 @@ a great work ethic and ease-of-fixing issues.
 
 Below is a loose example of how the project is supposed to be integrated into other projects.
 ```
-FadeDistributionAPI
+EnterpriseDistributionAPI
     |- api
             |- Stuff
             |- RedisPacket
@@ -24,11 +24,11 @@ FadeDistributionAPI
     |- backend
         |- Backend Specific Stuff
 
-FadeDistribution[Gamemode Name]
-    |- api (compile FadeDistributionAPI:api)
+EnterpriseDistribution[Gamemode Name]
+    |- api (compile EnterpriseDistributionAPI:api)
         |- [Gamemode Name]RedisPacket (extends RedisPacket)
-    |- proxy-plugin (compile :api & FadeDistributionAPI:proxy)
+    |- proxy-plugin (compile :api & EnterpriseDistributionAPI:proxy)
         |- sends/receives [Gamemode Name]RedisPacket
-    |- paper-plugin  (compile :api & FadeDistributionAPI:backend)
+    |- paper-plugin  (compile :api & EnterpriseDistributionAPI:backend)
         |- sends/receives [Gamemode Name]RedisPacket
 ```
