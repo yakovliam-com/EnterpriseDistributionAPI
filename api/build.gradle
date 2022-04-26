@@ -3,8 +3,7 @@ plugins {
     id 'com.github.johnrengelman.shadow'
 }
 
-repositories {
-}
+repositories {}
 
 dependencies {
     implementation 'org.redisson:redisson:3.17.0'
@@ -32,9 +31,9 @@ shadowJar {
     relocate 'com.thoughtworks.paranamer', "${project.group}.api.libs.paranamer"
     relocate 'com.typesafe', "${project.group}.api.libs.typesafe"
     relocate 'io.leangen', "${project.group}.api.libs.leangen"
-    relocate 'io.netty', "${project.group}.api.libs.netty"
+//    relocate 'io.netty', "${project.group}.api.libs.netty"
     relocate 'io.reactivex', "${project.group}.api.libs.reactivex"
-    relocate 'javax', "${project.group}.api.libs.javax"
+    relocate 'javax.cache', "${project.group}.api.libs.javax-cache"
     relocate 'jodd', "${project.group}.api.libs.jodd"
     relocate 'net.bytebuddy', "${project.group}.api.libs.bytebuddy"
     relocate 'org.checkerframework', "${project.group}.api.libs.checkerframework"
@@ -43,7 +42,7 @@ shadowJar {
     relocate 'org.jetbrains', "${project.group}.api.libs.jetbrains"
     relocate 'org.reactivestreams', "${project.group}.api.libs.reactivestreams"
     relocate 'org.redisson', "${project.group}.api.libs.redisson"
-    relocate 'org.slf4j', "${project.group}.api.libs.slf4j"
+//    relocate 'org.slf4j', "${project.group}.api.libs.slf4j"
     relocate 'org.spongepowered', "${project.group}.api.libs.spongepowered"
     relocate 'org.yaml.snakeyaml', "${project.group}.api.libs.snakeyaml"
     relocate 'reactor', "${project.group}.api.libs.reactor"
