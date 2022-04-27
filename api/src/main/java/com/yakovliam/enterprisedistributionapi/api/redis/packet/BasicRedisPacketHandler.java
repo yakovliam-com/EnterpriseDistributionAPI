@@ -23,7 +23,6 @@ public abstract class BasicRedisPacketHandler<T extends BasicRedisPacket> implem
 
     @Override
     public void onMessage(CharSequence channel, T packet) {
-        System.out.println("DEBUG: RECEIVED A PACKET: " + packet + ", " + channel);
         // handle the packet by checking if it has to handle anything with handshakes
         if (packet instanceof BasicRedisResponsePacket) {
             // remove from the failure cache if the handshake was completed
